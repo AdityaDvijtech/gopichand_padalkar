@@ -6,6 +6,8 @@ export default {
   banner: require('./HomeBanner.jpg'),
   bjp: require('./bjpLogo.png'),
   education: require('./education.png'),
+  banner1: require('./banner1.jpg'),
+  devendra: require('./devendra.jpg'),
 //  parliament: require('./parliament.png'),
 //  marriage: require('./marriage.png'),
   gopichandAvatar: require('./gopichand_avatar.png'),

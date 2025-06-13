@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions, Linking } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Video } from 'expo-av';
 import Carousel from 'react-native-reanimated-carousel';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import AppImages from '../assets/images';
 
+const openLink = async (url) => {
+  try {
+    const supported = await Linking.canOpenURL(url);
+    if (supported) {
+      await Linking.openURL(url);
+    } else {
+      console.log("Don't know how to open URI: " + url);
+    }
+  } catch (error) {
+    console.error("Error opening link: ", error);
+  }
+};
+
 export default function HomeScreen({ navigation }) {
   const carouselItems = [
     { id: 1, image: AppImages.gopichand },
     { id: 2, image: AppImages.speech },
-    { id: 3, image: AppImages.banner },
+    { id: 3, image: AppImages.devendra },
     { id: 4, image: AppImages.reservation },
   ];
 
@@ -106,7 +119,7 @@ export default function HomeScreen({ navigation }) {
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => openLink('https://x.com/GopichandP_MLC/status/1854457095657058388')}>
-            <Image source={{ uri: 'https://img.icons8.com/color/48/000000/twitter.png' }} style={styles.socialIcon} />
+            <Image source={{ uri: 'https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000' }} style={styles.socialIcon} />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => openLink('https://www.google.com/search?q=Gopichand+Padalkar')}>
@@ -174,11 +187,11 @@ export default function HomeScreen({ navigation }) {
           <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Schemes')}><Text style={styles.cardText}>सरकारी योजना</Text></TouchableOpacity>
         </View> */}
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
           <View style={styles.eventCard}><Text style={styles.eventCardText}>Dhangar Yatra</Text></View>
           <View style={styles.eventCard}><Text style={styles.eventCardText}>Marriage Events</Text></View>
           <View style={styles.eventCard}><Text style={styles.eventCardText}>Education Schemes</Text></View>
-        </ScrollView>
+        </ScrollView> */}
       </ScrollView>
     </LinearGradient>
   );

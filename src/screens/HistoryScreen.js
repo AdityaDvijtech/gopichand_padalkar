@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import AppImages from '../assets/images';
+
+const { width } = Dimensions.get('window');
 
 const themeColors = {
   yellowPrimary: '#FFD700',
@@ -10,69 +13,111 @@ const themeColors = {
   textDark: '#212121',
   textLight: '#585858',
   black: '#000000',
+  timeline: '#FFD700',
 };
 
 const historyEvents = [
   {
-    year: 'Ancient Times',
-    title: 'Origins of Dhangar Community',
-    description: 'The Dhangar community has its roots in ancient pastoral traditions, with a rich heritage of animal husbandry and sustainable living practices.',
-    image: 'https://via.placeholder.com/300x200.png?text=Ancient+Times'
+    year: '१९८२',
+    title: 'जन्म आणि प्रारंभिक जीवन',
+    description: 'सांगली जिल्ह्यातील पडळकरवाडी येथे कुंडलिक आणि हिराबाई पडळकर यांच्या पोटी जन्म. वडील कुंडलिक पडळकर प्राथमिक शिक्षक होते. महाराष्ट्रातील आदिवासी धनगर समाजातील.',
+    image: AppImages.gopichand,
   },
   {
-    year: 'Medieval Period',
-    title: 'Cultural Evolution',
-    description: 'During this period, the community developed unique cultural practices, traditional knowledge systems, and sustainable agricultural methods.',
-    image: 'https://via.placeholder.com/300x200.png?text=Medieval+Period'
+    year: '२०१४',
+    title: 'राजकीय कारकीर्दीची सुरुवात',
+    description: 'राष्ट्रीय समाज पक्षातून राजकीय कारकीर्द सुरू केली. २०१४ मध्ये भारतीय जनता पक्षात सामील झाले. अटपाडी-खानापूर मतदारसंघातून विधानसभा निवडणूक लढवली.',
+    image: AppImages.banner,
   },
   {
-    year: 'Modern Era',
-    title: 'Contemporary Contributions',
-    description: 'Today, the Dhangar community continues to make significant contributions to agriculture, animal husbandry, and sustainable development.',
-    image: 'https://via.placeholder.com/300x200.png?text=Modern+Era'
+    year: '२०१९',
+    title: 'राजकीय प्रवास',
+    description: 'वंचित बहुजन आघाडीत सामील झाले आणि सांगली लोकसभा मतदारसंघातून निवडणूक लढवली. ऑक्टोबर २०१९ मध्ये पुन्हा भाजपात सामील झाले आणि बारामतीत अजित पवारांविरुद्ध विधानसभा निवडणूक लढवली.',
+    image: AppImages.speech,
+  },
+  {
+    year: '२०२०',
+    title: 'विधान परिषद सदस्य',
+    description: '१४ मे २०२० रोजी महाराष्ट्र विधान परिषदेचे सदस्य म्हणून निवड झाली. भाजप महाराष्ट्राचे प्रवक्ता म्हणून काम केले.',
+    image: AppImages.banner1,
+  },
+  {
+    year: '२०२४',
+    title: 'विधानसभा सदस्य',
+    description: 'जत विधानसभा मतदारसंघातून महाराष्ट्र विधानसभेचे सदस्य म्हणून निवड झाली. सध्या महाराष्ट्र विधानसभेचे सदस्य आणि भाजपाचे प्रवक्ता म्हणून काम करत आहेत.',
+    image: AppImages.gopichand,
   }
 ];
 
 export default function HistoryScreen({ navigation }) {
   return (
-    <LinearGradient colors={[themeColors.yellowLight, themeColors.white]} style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.historyHeader}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+    <View style={styles.container}>
+      {/* Header */}
+      <LinearGradient 
+        colors={[themeColors.yellowLight, themeColors.white]} 
+        style={styles.headerGradient}
+      >
+        <View style={styles.header}>
+          <TouchableOpacity 
+            style={styles.backButton} 
+            onPress={() => navigation.goBack()}
+          >
             <Ionicons name="arrow-back" size={24} color={themeColors.textDark} />
           </TouchableOpacity>
-          <Text style={styles.historyTitle}>Our Heritage</Text>
-        </View>
-
-        <View style={styles.heroSection}>
-          <Image 
-            source={{ uri: 'https://via.placeholder.com/400x250.png?text=Dhangar+Heritage' }} 
-            style={styles.heroImage} 
-          />
-          <Text style={styles.heroTitle}>The Dhangar Legacy</Text>
-          <Text style={styles.heroSubtitle}>A Journey Through Time</Text>
-        </View>
-
-        {historyEvents.map((event, index) => (
-          <View key={index} style={styles.timelineItem}>
-            <View style={styles.timelineYear}>
-              <Text style={styles.yearText}>{event.year}</Text>
-            </View>
-            <View style={styles.timelineContent}>
-              <Image source={{ uri: event.image }} style={styles.timelineImage} />
-              <Text style={styles.timelineTitle}>{event.title}</Text>
-              <Text style={styles.timelineDescription}>{event.description}</Text>
+          <View style={styles.headerContent}>
+            <Image 
+              source={AppImages.gopichandAvatar}
+              style={styles.headerImage} 
+            />
+            <View style={styles.headerText}>
+              <Text style={styles.headerTitle}>गोपीचंद पडळकर</Text>
+              <Text style={styles.headerSubtitle}>राजकीय प्रवास</Text>
             </View>
           </View>
-        ))}
+        </View>
+      </LinearGradient>
 
-        <View style={styles.quoteSection}>
-          <Text style={styles.quoteText}>
-            "Preserving our heritage is not just about remembering the past, but building our future."
-          </Text>
+      {/* Timeline */}
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.timelineContainer}>
+          {historyEvents.map((event, index) => (
+            <View key={index} style={styles.timelineEvent}>
+              {/* Timeline Line */}
+              <View style={styles.timelineLine}>
+                <View style={styles.timelineDot} />
+                {index !== historyEvents.length - 1 && <View style={styles.timelineConnector} />}
+              </View>
+
+              {/* Event Content */}
+              <View style={styles.eventContent}>
+                <View style={styles.yearBadge}>
+                  <Text style={styles.yearText}>{event.year}</Text>
+                </View>
+                <View style={styles.eventCard}>
+                  <Image source={event.image} style={styles.eventImage} />
+                  <View style={styles.eventDetails}>
+                    <Text style={styles.eventTitle}>{event.title}</Text>
+                    <Text style={styles.eventDescription}>{event.description}</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          ))}
+        </View>
+
+        {/* Quote */}
+        <View style={styles.quoteContainer}>
+          <LinearGradient
+            colors={[themeColors.yellowLight, themeColors.white]}
+            style={styles.quoteGradient}
+          >
+            <Text style={styles.quoteText}>
+              "समाजाच्या विकासासाठी आणि महाराष्ट्राच्या प्रगतीसाठी काम करण्याची प्रतिबद्धता"
+            </Text>
+          </LinearGradient>
         </View>
       </ScrollView>
-    </LinearGradient>
+    </View>
   );
 }
 
@@ -81,101 +126,136 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: themeColors.white,
   },
-  scrollContent: {
-    padding: 16,
+  headerGradient: {
+    paddingTop: 40,
+    paddingBottom: 20,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    elevation: 4,
   },
-  historyHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 20,
+  header: {
+    paddingHorizontal: 16,
   },
   backButton: {
-    backgroundColor: themeColors.white,
-    borderRadius: 20,
     width: 40,
     height: 40,
+    borderRadius: 20,
+    backgroundColor: themeColors.white,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 16,
+    marginBottom: 16,
     elevation: 2,
-    borderWidth: 1,
-    borderColor: themeColors.yellowLight,
   },
-  historyTitle: {
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginRight: 16,
+    borderWidth: 3,
+    borderColor: themeColors.white,
+  },
+  headerText: {
+    flex: 1,
+  },
+  headerTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: themeColors.textDark,
+    marginBottom: 4,
   },
-  heroSection: {
-    marginBottom: 24,
-  },
-  heroImage: {
-    width: '100%',
-    height: 200,
-    borderRadius: 12,
-    marginBottom: 16,
-  },
-  heroTitle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: themeColors.textDark,
-    marginBottom: 8,
-  },
-  heroSubtitle: {
-    fontSize: 18,
-    color: themeColors.textLight,
-  },
-  timelineItem: {
-    marginBottom: 24,
-    backgroundColor: themeColors.white,
-    borderRadius: 12,
-    overflow: 'hidden',
-    elevation: 2,
-    borderWidth: 1,
-    borderColor: themeColors.yellowLight,
-  },
-  timelineYear: {
-    backgroundColor: themeColors.yellowPrimary,
-    padding: 12,
-  },
-  yearText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: themeColors.textDark,
-  },
-  timelineContent: {
-    padding: 16,
-  },
-  timelineImage: {
-    width: '100%',
-    height: 150,
-    borderRadius: 8,
-    marginBottom: 12,
-  },
-  timelineTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: themeColors.textDark,
-    marginBottom: 8,
-  },
-  timelineDescription: {
+  headerSubtitle: {
     fontSize: 16,
     color: themeColors.textLight,
-    lineHeight: 24,
   },
-  quoteSection: {
-    backgroundColor: themeColors.yellowLight,
-    padding: 20,
-    borderRadius: 12,
-    marginTop: 16,
+  scrollView: {
+    flex: 1,
+  },
+  timelineContainer: {
+    padding: 16,
+  },
+  timelineEvent: {
+    flexDirection: 'row',
     marginBottom: 24,
   },
-  quoteText: {
+  timelineLine: {
+    width: 24,
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  timelineDot: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: themeColors.timeline,
+    borderWidth: 4,
+    borderColor: themeColors.white,
+    elevation: 2,
+  },
+  timelineConnector: {
+    width: 2,
+    flex: 1,
+    backgroundColor: themeColors.timeline,
+    marginVertical: 8,
+  },
+  eventContent: {
+    flex: 1,
+  },
+  yearBadge: {
+    backgroundColor: themeColors.yellowLight,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 16,
+    alignSelf: 'flex-start',
+    marginBottom: 8,
+  },
+  yearText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+  },
+  eventCard: {
+    backgroundColor: themeColors.white,
+    borderRadius: 16,
+    elevation: 2,
+    overflow: 'hidden',
+  },
+  eventImage: {
+    width: '100%',
+    height: 160,
+    resizeMode: 'cover',
+  },
+  eventDetails: {
+    padding: 16,
+  },
+  eventTitle: {
     fontSize: 18,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+    marginBottom: 8,
+  },
+  eventDescription: {
+    fontSize: 14,
+    color: themeColors.textLight,
+    lineHeight: 20,
+  },
+  quoteContainer: {
+    padding: 16,
+    marginBottom: 24,
+  },
+  quoteGradient: {
+    padding: 20,
+    borderRadius: 16,
+    elevation: 2,
+  },
+  quoteText: {
+    fontSize: 16,
     fontStyle: 'italic',
     color: themeColors.textDark,
     textAlign: 'center',
-    lineHeight: 26,
+    lineHeight: 24,
   },
 });

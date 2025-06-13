@@ -13,28 +13,28 @@ const themeColors = {
 };
 
 const detailData = {
-  title: "Dhangar Community Heritage",
-  subtitle: "Preserving Our Rich Cultural Legacy",
-  image: "https://via.placeholder.com/800x400.png?text=Dhangar+Heritage",
-  description: "The Dhangar community has a rich heritage that spans centuries, with deep roots in pastoral traditions and sustainable living practices. Our community has contributed significantly to agriculture, animal husbandry, and cultural preservation.",
+  title: "गोपीचंद पडळकर",
+  subtitle: "महाराष्ट्र विधानसभा सदस्य",
+  image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/40px-Flag_of_India.svg.png",
+  description: "गोपीचंद कुंडलिक पडळकर (जन्म १ ऑक्टोबर १९८२) हे भारतीय राजकारणी आणि भारतीय जनता पक्षाचे सदस्य आहेत. ते सध्या जत विधानसभा मतदारसंघाचे प्रतिनिधित्व करणारे महाराष्ट्र विधानसभेचे सदस्य आहेत. याआधी, ते १४ मे २०२० ते २३ नोव्हेंबर २०२४ पर्यंत महाराष्ट्र विधान परिषदेचे सदस्य होते.",
   highlights: [
     {
-      title: "Traditional Knowledge",
-      description: "Centuries of accumulated wisdom in sustainable farming and animal husbandry practices."
+      title: "प्रारंभिक जीवन",
+      description: "सांगली जिल्ह्यातील पडळकरवाडी येथे कुंडलिक आणि हिराबाई पडळकर यांच्या पोटी जन्म. त्यांचे वडील कुंडलिक पडळकर प्राथमिक शिक्षक होते. ते महाराष्ट्रातील आदिवासी धनगर समाजातील आहेत आणि उच्च माध्यमिक शिक्षण पूर्ण केले आहेत."
     },
     {
-      title: "Cultural Heritage",
-      description: "Rich traditions in music, dance, and festivals that celebrate our community's identity."
+      title: "राजकीय कारकीर्द",
+      description: "राष्ट्रीय समाज पक्षातून राजकीय कारकीर्द सुरू केली. २०१४ मध्ये भाजपात सामील झाले, नंतर २०१९ मध्ये वंचित बहुजन आघाडीत सामील झाले आणि ऑक्टोबर २०१९ मध्ये पुन्हा भाजपात सामील झाले. २०१९ च्या विधानसभा निवडणुकीत बारामतीत अजित पवारांविरुद्ध लढले."
     },
     {
-      title: "Modern Contributions",
-      description: "Continued impact on agriculture and sustainable development in contemporary society."
+      title: "सध्याचे पद",
+      description: "महाराष्ट्र विधानसभा सदस्य (२०२४-सध्याचे), भाजप महाराष्ट्राचे प्रवक्ता आणि याआधी महाराष्ट्र विधान परिषदेचे सदस्य (२०२०-२०२४) होते."
     }
   ],
   stats: [
-    { label: "Years of Heritage", value: "500+" },
-    { label: "Community Members", value: "1M+" },
-    { label: "States Covered", value: "12+" }
+    { label: "जन्म", value: "१९८२" },
+    { label: "मतदारसंघ", value: "जत" },
+    { label: "पक्ष", value: "भाजप" }
   ]
 };
 

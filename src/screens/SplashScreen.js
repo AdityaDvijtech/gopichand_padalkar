@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import AppImages from '../assets/images';
 
 const themeColors = {
   yellowPrimary: '#FFD700',
@@ -23,7 +24,7 @@ export default function SplashScreen({ navigation }) {
     <LinearGradient colors={[themeColors.yellowLight, themeColors.white]} style={styles.container}>
       <View style={styles.centered}>
         <Image
-          source={{ uri: 'https://via.placeholder.com/120x120.png?text=Logo' }}
+          source={AppImages.gopichandAvatar}
           style={styles.logo}
         />
         <Text style={styles.title}>PublicConnect</Text>

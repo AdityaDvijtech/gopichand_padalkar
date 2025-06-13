@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import AppImages from '../assets/images';
 
 const themeColors = {
   yellowPrimary: '#FFD700',
@@ -27,7 +28,7 @@ export default function OtpVerificationScreen({ navigation }) {
       </TouchableOpacity>
       <View style={styles.centered}>
         <Image
-          source={{ uri: 'https://via.placeholder.com/100x100.png?text=Logo' }}
+          source={AppImages.gopichandAvatar}
           style={styles.logo}
         />
         <Text style={styles.title}>PublicConnect</Text>
