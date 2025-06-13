@@ -3,7 +3,8 @@ export default {
   dhangarBg: require('./dhangar_bg.png'),
   gopichand: require('./gopichand.png'),
   event1: require('./event1.png'),
-//  event2: require('./event2.png'),
+  banner: require('./HomeBanner.jpg'),
+  bjp: require('./bjpLogo.png'),
   education: require('./education.png'),
 //  parliament: require('./parliament.png'),
 //  marriage: require('./marriage.png'),
@@ -20,4 +21,5 @@ export default {
   visitSession: require('./visitSession.png'),
   session: require('./session.png'),
   map: require('./map.png'),
+  video: require('./video.mp4')
 }; 

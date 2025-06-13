@@ -2,6 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+const themeColors = {
+  yellowPrimary: '#FFD700',
+  yellowLight: '#FFFACD',
+  white: '#FFFFFF',
+  textDark: '#212121',
+  textLight: '#585858',
+  black: '#000000',
+};
+
 export default function OtpVerificationScreen({ navigation }) {
   const [otp, setOtp] = useState(['', '', '', '']);
 
@@ -12,9 +21,9 @@ export default function OtpVerificationScreen({ navigation }) {
   };
 
   return (
-    <LinearGradient colors={["#ffb300", "#ff9800"]} style={styles.container}>
+    <LinearGradient colors={[themeColors.yellowLight, themeColors.white]} style={styles.container}>
       <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-        <Text style={{fontSize: 24}}>{'<'}</Text>
+        <Text style={styles.backBtnText}>{'<'}</Text>
       </TouchableOpacity>
       <View style={styles.centered}>
         <Image
@@ -39,7 +48,7 @@ export default function OtpVerificationScreen({ navigation }) {
           ))}
         </View>
         <TouchableOpacity>
-          <Text style={styles.resend}>Don't receive OTP? <Text style={{textDecorationLine: 'underline'}}>Resend</Text></Text>
+          <Text style={styles.resend}>Don't receive OTP? <Text style={styles.resendLink}>Resend</Text></Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.verifyBtn} onPress={() => navigation.replace('MainTabs')}>
           <Text style={styles.verifyBtnText}>Verify</Text>
@@ -50,18 +59,108 @@ export default function OtpVerificationScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  backBtn: { position: 'absolute', top: 40, left: 20, zIndex: 2 },
-  centered: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 },
-  logo: { width: 100, height: 100, marginBottom: 16, borderRadius: 50, backgroundColor: '#fff' },
-  title: { fontSize: 28, fontWeight: 'bold', color: '#fff', marginBottom: 4 },
-  subtitle: { fontSize: 14, color: '#fff', opacity: 0.8, marginBottom: 24 },
-  otpTitle: { fontSize: 22, fontWeight: 'bold', color: '#fff', marginBottom: 4 },
-  otpSubtitle: { fontSize: 14, color: '#fff', marginBottom: 16 },
-  verification: { fontSize: 20, fontWeight: 'bold', color: '#fff', marginBottom: 12 },
-  otpRow: { flexDirection: 'row', justifyContent: 'center', marginBottom: 16 },
-  otpInput: { width: 48, height: 48, backgroundColor: '#ffd54f', borderRadius: 8, marginHorizontal: 8, textAlign: 'center', fontSize: 24, borderWidth: 1, borderColor: '#fff' },
-  resend: { color: '#fff', marginBottom: 16, marginTop: 8, fontSize: 14 },
-  verifyBtn: { width: '100%', borderRadius: 8, borderWidth: 2, borderColor: '#fff', padding: 12, alignItems: 'center', marginTop: 8 },
-  verifyBtnText: { color: '#fff', fontWeight: 'bold', fontSize: 18 },
+  container: {
+    flex: 1,
+    backgroundColor: themeColors.white,
+  },
+  backBtn: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+    zIndex: 1,
+    backgroundColor: themeColors.white,
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+  },
+  backBtnText: {
+    fontSize: 24,
+    color: themeColors.textDark,
+  },
+  centered: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: themeColors.yellowPrimary,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: themeColors.textLight,
+    marginBottom: 30,
+  },
+  otpTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+    marginBottom: 8,
+  },
+  otpSubtitle: {
+    fontSize: 16,
+    color: themeColors.textLight,
+    marginBottom: 24,
+    textAlign: 'center',
+  },
+  verification: {
+    fontSize: 18,
+    color: themeColors.textDark,
+    marginBottom: 16,
+  },
+  otpRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 24,
+  },
+  otpInput: {
+    width: 50,
+    height: 50,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+    borderRadius: 8,
+    marginHorizontal: 8,
+    textAlign: 'center',
+    fontSize: 20,
+    color: themeColors.textDark,
+    backgroundColor: themeColors.white,
+  },
+  resend: {
+    fontSize: 14,
+    color: themeColors.textLight,
+    marginBottom: 24,
+  },
+  resendLink: {
+    textDecorationLine: 'underline',
+    color: themeColors.textDark,
+  },
+  verifyBtn: {
+    backgroundColor: themeColors.yellowPrimary,
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 40,
+    alignItems: 'center',
+    elevation: 2,
+  },
+  verifyBtnText: {
+    color: themeColors.textDark,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
 }); 

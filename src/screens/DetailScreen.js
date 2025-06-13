@@ -1,35 +1,196 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
+
+const themeColors = {
+  yellowPrimary: '#FFD700',
+  yellowLight: '#FFFACD',
+  white: '#FFFFFF',
+  textDark: '#212121',
+  textLight: '#585858',
+  black: '#000000',
+};
+
+const detailData = {
+  title: "Dhangar Community Heritage",
+  subtitle: "Preserving Our Rich Cultural Legacy",
+  image: "https://via.placeholder.com/800x400.png?text=Dhangar+Heritage",
+  description: "The Dhangar community has a rich heritage that spans centuries, with deep roots in pastoral traditions and sustainable living practices. Our community has contributed significantly to agriculture, animal husbandry, and cultural preservation.",
+  highlights: [
+    {
+      title: "Traditional Knowledge",
+      description: "Centuries of accumulated wisdom in sustainable farming and animal husbandry practices."
+    },
+    {
+      title: "Cultural Heritage",
+      description: "Rich traditions in music, dance, and festivals that celebrate our community's identity."
+    },
+    {
+      title: "Modern Contributions",
+      description: "Continued impact on agriculture and sustainable development in contemporary society."
+    }
+  ],
+  stats: [
+    { label: "Years of Heritage", value: "500+" },
+    { label: "Community Members", value: "1M+" },
+    { label: "States Covered", value: "12+" }
+  ]
+};
 
 export default function DetailScreen({ navigation }) {
   return (
-    <LinearGradient colors={["#ffb300", "#ff9800"]} style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.headerRow}>
-          <Text style={styles.header} onPress={() => navigation.goBack()}>{'<'} </Text>
-          <Text style={styles.headerTitle}>Mr. Gopichand Padalkar</Text>
+    <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.detailHeader}>
+          <Image source={{ uri: detailData.image }} style={styles.detailImage} />
+          <View style={styles.detailOverlay} />
+          <TouchableOpacity 
+            style={styles.backButton} 
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="arrow-back" size={24} color={themeColors.white} />
+          </TouchableOpacity>
+          <View style={styles.detailHeaderContent}>
+            <Text style={styles.detailTitle}>{detailData.title}</Text>
+            <Text style={styles.detailSubtitle}>{detailData.subtitle}</Text>
+          </View>
         </View>
-        <Image source={{ uri: 'https://randomuser.me/api/portraits/men/2.jpg' }} style={styles.img} />
-        <Text style={styles.subtitle}>MLA, BHAJAPA, Sangli</Text>
-        <Text style={styles.desc}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras semper, metus vitae sollicitudin maximus, tortor nulla mollis augue, at ornare diam nibh a magna. Donec iaculis, erat eget fringilla sagittis, augue metus pellentesque arcu, eu luctus turpis orci quis turpis. Ut id ullamcorper nunc, et vehicula tellus. Nulla sodales mollis lorem in finibus. Aenean erat risus, vehicula quis turpis nec, ultricies eleifend felis. Praesent at mi tellus. Phasellus pharetra blandit purus ut mollis. Quisque sit amet eros congue, interdum tortor et, tincidunt neque. Suspendisse lobortis erat ut laoreet porta. Cras turpis arcu, bibendum id lectus eu, convallis tempor nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed ut lorem vitae ex interdum imperdiet eget eu augue. Aenean commodo tempor sapien, vel tincidunt quam tempor nec.
-        </Text>
-        <Text style={styles.desc}>
-          Duis vehicula eros rhoncus purus efficitur, a feugiat sem molestie. Vestibulum vitae pellentesque felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius tellus a fringilla tincidunt. Integer tellus lectus, maximus et neque at, fermentum condimentum sem. Fusce malesuada quam vel nisi bibendum porta. Nunc a imperdiet nibh. Maecenas vitae tellus dui.
-        </Text>
+
+        <View style={styles.detailContent}>
+          <View style={styles.detailSection}>
+            <Text style={styles.detailText}>{detailData.description}</Text>
+          </View>
+
+          <View style={styles.detailSection}>
+            <Text style={styles.detailSectionTitle}>Key Highlights</Text>
+            {detailData.highlights.map((highlight, index) => (
+              <View key={index} style={styles.detailCard}>
+                <Text style={styles.detailCardTitle}>{highlight.title}</Text>
+                <Text style={styles.detailText}>{highlight.description}</Text>
+              </View>
+            ))}
+          </View>
+
+          <View style={styles.detailSection}>
+            <Text style={styles.detailSectionTitle}>Community Stats</Text>
+            <View style={styles.statsContainer}>
+              {detailData.stats.map((stat, index) => (
+                <View key={index} style={styles.statCard}>
+                  <Text style={styles.statValue}>{stat.value}</Text>
+                  <Text style={styles.statLabel}>{stat.label}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        </View>
       </ScrollView>
-    </LinearGradient>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  scrollContent: { padding: 16 },
-  headerRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 16 },
-  header: { fontSize: 24, color: '#fff', marginRight: 8 },
-  headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#fff', flex: 1 },
-  img: { width: '100%', height: 180, borderRadius: 8, marginBottom: 8 },
-  subtitle: { fontSize: 16, color: '#fff', marginBottom: 8, textAlign: 'center' },
-  desc: { color: '#fff', fontSize: 14, marginBottom: 8 },
+  container: {
+    flex: 1,
+    backgroundColor: themeColors.white,
+  },
+  detailHeader: {
+    height: 300,
+    position: 'relative',
+  },
+  detailImage: {
+    width: '100%',
+    height: '100%',
+  },
+  detailOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 2,
+  },
+  detailHeaderContent: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
+  },
+  detailTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: themeColors.white,
+    marginBottom: 8,
+  },
+  detailSubtitle: {
+    fontSize: 18,
+    color: themeColors.white,
+    opacity: 0.9,
+  },
+  detailContent: {
+    padding: 20,
+  },
+  detailSection: {
+    marginBottom: 24,
+  },
+  detailSectionTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+    marginBottom: 16,
+  },
+  detailCard: {
+    backgroundColor: themeColors.white,
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+    elevation: 2,
+  },
+  detailCardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+    marginBottom: 8,
+  },
+  detailText: {
+    fontSize: 16,
+    color: themeColors.textLight,
+    lineHeight: 24,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  statCard: {
+    flex: 1,
+    backgroundColor: themeColors.white,
+    borderRadius: 8,
+    padding: 16,
+    marginHorizontal: 4,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+    elevation: 2,
+  },
+  statValue: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: themeColors.yellowPrimary,
+    marginBottom: 4,
+  },
+  statLabel: {
+    fontSize: 14,
+    color: themeColors.textLight,
+    textAlign: 'center',
+  },
 }); 

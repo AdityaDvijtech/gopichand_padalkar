@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "dhangar-app",
-    "slug": "dhangar-app",
+    "slug": "gopichand-padalkar",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,6 +24,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c76b0a40-ca8c-4b04-8053-e7b7768d2391"
+      }
+    },
+    "owner": "adityap340"
   }
 }

@@ -2,6 +2,15 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+const themeColors = {
+  yellowPrimary: '#FFD700',
+  yellowLight: '#FFFACD',
+  white: '#FFFFFF',
+  textDark: '#212121',
+  textLight: '#585858',
+  black: '#000000',
+};
+
 export default function SplashScreen({ navigation }) {
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -11,7 +20,7 @@ export default function SplashScreen({ navigation }) {
   }, [navigation]);
 
   return (
-    <LinearGradient colors={["#ffb300", "#ff9800"]} style={styles.container}>
+    <LinearGradient colors={[themeColors.yellowLight, themeColors.white]} style={styles.container}>
       <View style={styles.centered}>
         <Image
           source={{ uri: 'https://via.placeholder.com/120x120.png?text=Logo' }}
@@ -27,28 +36,29 @@ export default function SplashScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: themeColors.white,
   },
   centered: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   logo: {
     width: 120,
     height: 120,
-    marginBottom: 24,
+    marginBottom: 20,
     borderRadius: 60,
-    backgroundColor: '#fff',
+    borderWidth: 2,
+    borderColor: themeColors.yellowPrimary,
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#fff',
+    color: themeColors.textDark,
     marginBottom: 8,
   },
   subtitle: {
-    fontSize: 16,
-    color: '#fff',
-    opacity: 0.8,
+    fontSize: 18,
+    color: themeColors.textLight,
   },
 }); 

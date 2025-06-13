@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+
+const themeColors = {
+  yellowPrimary: '#FFD700',
+  yellowLight: '#FFFACD',
+  white: '#FFFFFF',
+  textDark: '#212121',
+  textLight: '#585858',
+  black: '#000000',
+};
 
 export default function ComplaintScreen({ navigation }) {
   const [form, setForm] = useState({
@@ -9,62 +18,230 @@ export default function ComplaintScreen({ navigation }) {
     address: '',
     phone: '',
     pincode: '',
+    description: '',
     checked: false,
   });
 
   const handleChange = (key, value) => setForm({ ...form, [key]: value });
 
   return (
-    <LinearGradient colors={["#ffb300", "#ff9800"]} style={styles.container}>
+    <LinearGradient colors={[themeColors.yellowLight, themeColors.white]} style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <Text style={{fontSize: 24}}>{'<'}</Text>
-        </TouchableOpacity>
-        <Image source={{ uri: 'https://via.placeholder.com/350x150.png?text=Map' }} style={styles.map} />
-        <View style={styles.inputRow}>
-          <Image source={{uri: 'https://img.icons8.com/ios-filled/50/000000/user.png'}} style={styles.icon} />
-          <TextInput style={styles.input} placeholder="Full Name" value={form.fullName} onChangeText={v => handleChange('fullName', v)} />
-        </View>
-        <View style={styles.inputRow}>
-          <Image source={{uri: 'https://img.icons8.com/ios-filled/50/000000/marker.png'}} style={styles.icon} />
-          <TextInput style={styles.input} placeholder="Address" value={form.address} onChangeText={v => handleChange('address', v)} />
-        </View>
-        <View style={styles.inputRow}>
-          <Image source={{uri: 'https://img.icons8.com/ios-filled/50/000000/phone.png'}} style={styles.icon} />
-          <TextInput style={styles.input} placeholder="Phone No" value={form.phone} onChangeText={v => handleChange('phone', v)} />
-          <Image source={{uri: 'https://img.icons8.com/ios-filled/50/000000/marker.png'}} style={styles.icon} />
-          <TextInput style={styles.input} placeholder="Pincode" value={form.pincode} onChangeText={v => handleChange('pincode', v)} />
-        </View>
-        <View style={styles.checkboxRow}>
-          <TouchableOpacity onPress={() => handleChange('checked', !form.checked)}>
-            <Ionicons name={form.checked ? 'checkbox' : 'square-outline'} size={24} color={form.checked ? '#ff9800' : '#fff'} />
+        <View style={styles.complaintHeader}>
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back" size={24} color={themeColors.textDark} />
           </TouchableOpacity>
-          <Text style={styles.checkboxText}>Welcome our community within 5 min to action your complaint.</Text>
+          <Text style={styles.complaintTitle}>File a Complaint</Text>
         </View>
-        <View style={styles.uploadBox}>
-          <Text style={styles.uploadText}>Drop Here Image, Document, Video</Text>
+
+        <View style={styles.complaintForm}>
+          <Text style={styles.formLabel}>Full Name</Text>
+          <TextInput
+            style={styles.formInput}
+            placeholder="Enter your full name"
+            value={form.fullName}
+            onChangeText={v => handleChange('fullName', v)}
+            placeholderTextColor={themeColors.textLight}
+          />
+
+          <Text style={styles.formLabel}>Address</Text>
+          <TextInput
+            style={styles.formInput}
+            placeholder="Enter your address"
+            value={form.address}
+            onChangeText={v => handleChange('address', v)}
+            placeholderTextColor={themeColors.textLight}
+          />
+
+          <View style={styles.rowContainer}>
+            <View style={styles.columnContainer}>
+              <Text style={styles.formLabel}>Phone Number</Text>
+              <TextInput
+                style={styles.formInput}
+                placeholder="phone number"
+                keyboardType="phone-pad"
+                value={form.phone}
+                onChangeText={v => handleChange('phone', v)}
+                placeholderTextColor={themeColors.textLight}
+              />
+            </View>
+            <View style={styles.columnContainer}>
+              <Text style={styles.formLabel}>Pincode</Text>
+              <TextInput
+                style={styles.formInput}
+                placeholder="Enter pincode"
+                keyboardType="number-pad"
+                value={form.pincode}
+                onChangeText={v => handleChange('pincode', v)}
+                placeholderTextColor={themeColors.textLight}
+              />
+            </View>
+          </View>
+
+          <Text style={styles.formLabel}>Description</Text>
+          <TextInput
+            style={styles.formTextArea}
+            placeholder="Describe your complaint in detail"
+            multiline
+            value={form.description}
+            onChangeText={v => handleChange('description', v)}
+            placeholderTextColor={themeColors.textLight}
+          />
+
+          <TouchableOpacity style={styles.uploadSection}>
+            <Ionicons name="cloud-upload-outline" size={32} color={themeColors.textDark} />
+            <Text style={styles.uploadText}>Upload Supporting Documents</Text>
+            <Text style={styles.uploadSubtext}>Images, Videos, or Documents</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.checkboxRow}
+            onPress={() => handleChange('checked', !form.checked)}
+          >
+            <Ionicons 
+              name={form.checked ? 'checkbox' : 'square-outline'} 
+              size={24} 
+              color={form.checked ? themeColors.yellowPrimary : themeColors.textDark} 
+            />
+            <Text style={styles.checkboxText}>
+              I agree to the terms and conditions of filing a complaint
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={[
+              styles.submitButton,
+              !form.checked && styles.submitButtonDisabled
+            ]}
+            disabled={!form.checked}
+          >
+            <Text style={styles.submitButtonText}>Submit Complaint</Text>
+          </TouchableOpacity>
         </View>
-        <TextInput style={styles.input} placeholder="Write here ..." multiline />
-        <TouchableOpacity style={styles.submitBtn}>
-          <Text style={styles.submitBtnText}>Submit</Text>
-        </TouchableOpacity>
       </ScrollView>
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  scrollContent: { padding: 16 },
-  backBtn: { position: 'absolute', top: 40, left: 20, zIndex: 2 },
-  map: { width: '100%', height: 150, borderRadius: 12, marginBottom: 16 },
-  inputRow: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 8, marginBottom: 16, paddingHorizontal: 8 },
-  icon: { width: 24, height: 24, marginRight: 8 },
-  input: { flex: 1, height: 48, fontSize: 16, marginBottom: 8 },
-  checkboxRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 16 },
-  checkboxText: { color: '#fff', fontSize: 12, marginLeft: 8, flex: 1 },
-  uploadBox: { backgroundColor: '#fff', borderRadius: 8, padding: 16, alignItems: 'center', marginBottom: 16 },
-  uploadText: { color: '#ff9800', fontWeight: 'bold' },
-  submitBtn: { width: '100%', borderRadius: 8, backgroundColor: '#fff', padding: 12, alignItems: 'center', marginTop: 8 },
-  submitBtnText: { color: '#ff9800', fontWeight: 'bold', fontSize: 18 },
+  container: {
+    flex: 1,
+    backgroundColor: themeColors.white,
+  },
+  scrollContent: {
+    padding: 16,
+  },
+  complaintHeader: {
+    flexDirection: 'row',
+    marginBottom: 12,
+    marginTop: 8,
+  },
+  backButton: {
+    backgroundColor: themeColors.white,
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+  },
+  complaintTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+  },
+  complaintForm: {
+    backgroundColor: themeColors.white,
+    borderRadius: 12,
+    padding: 16,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+  },
+  formLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+    marginBottom: 8,
+  },
+  formInput: {
+    backgroundColor: themeColors.white,
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+    color: themeColors.textDark,
+    fontSize: 16,
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  columnContainer: {
+    flex: 1,
+    marginHorizontal: 4,
+  },
+  formTextArea: {
+    backgroundColor: themeColors.white,
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+    color: themeColors.textDark,
+    fontSize: 16,
+    height: 120,
+    textAlignVertical: 'top',
+  },
+  uploadSection: {
+    backgroundColor: themeColors.yellowLight,
+    borderRadius: 8,
+    padding: 10,
+    alignItems: 'center',
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: themeColors.yellowPrimary,
+  },
+  uploadText: {
+    fontSize: 16,
+    color: themeColors.textDark,
+    marginTop: 8,
+    fontWeight: 'bold',
+  },
+  uploadSubtext: {
+    fontSize: 12,
+    color: themeColors.textLight,
+    marginTop: 4,
+  },
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 16,
+    marginBottom: 16,
+  },
+  checkboxText: {
+    flex: 1,
+    marginLeft: 8,
+    fontSize: 14,
+    color: themeColors.textLight,
+  },
+  submitButton: {
+    backgroundColor: themeColors.yellowPrimary,
+    borderRadius: 10,
+    padding: 12,
+    alignItems: 'center',
+    elevation: 2,
+  },
+  submitButtonDisabled: {
+    opacity: 0.5,
+  },
+  submitButtonText: {
+    color: themeColors.textDark,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 }); 

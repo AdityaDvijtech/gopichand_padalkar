@@ -3,14 +3,23 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'reac
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
+const themeColors = {
+  yellowPrimary: '#FFD700',
+  yellowLight: '#FFFACD',
+  white: '#FFFFFF',
+  textDark: '#212121',
+  textLight: '#585858',
+  black: '#000000',
+};
+
 export default function LoginScreen({ navigation }) {
   const [mobile, setMobile] = useState('');
   const [checked, setChecked] = useState(false);
 
   return (
-    <LinearGradient colors={["#ffb300", "#ff9800"]} style={styles.container}>
+    <LinearGradient colors={[themeColors.yellowLight, themeColors.white]} style={styles.container}>
       <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-        <Text style={{fontSize: 24}}>{'<'}</Text>
+        <Text style={styles.backBtnText}>{'<'}</Text>
       </TouchableOpacity>
       <View style={styles.centered}>
         <Image
@@ -27,16 +36,21 @@ export default function LoginScreen({ navigation }) {
           keyboardType="phone-pad"
           value={mobile}
           onChangeText={setMobile}
+          placeholderTextColor={themeColors.textLight}
         />
         <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('OtpVerification')}>
           <Text style={styles.loginBtnText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-          <Text style={{ color: '#fff', marginBottom: 8, textDecorationLine: 'underline' }}>Register</Text>
+          <Text style={styles.registerText}>Register</Text>
         </TouchableOpacity>
         <View style={styles.checkboxRow}>
           <TouchableOpacity onPress={() => setChecked(!checked)}>
-            <Ionicons name={checked ? 'checkbox' : 'square-outline'} size={24} color={checked ? '#ff9800' : '#fff'} />
+            <Ionicons 
+              name={checked ? 'checkbox' : 'square-outline'} 
+              size={24} 
+              color={checked ? themeColors.yellowPrimary : themeColors.textDark} 
+            />
           </TouchableOpacity>
           <Text style={styles.checkboxText}>
             By providing my phone number, I hereby agree and accept the terms and privacy policy in use of the app.
@@ -48,17 +62,107 @@ export default function LoginScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  backBtn: { position: 'absolute', top: 40, left: 20, zIndex: 2 },
-  centered: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 },
-  logo: { width: 100, height: 100, marginBottom: 16, borderRadius: 50, backgroundColor: '#fff' },
-  title: { fontSize: 28, fontWeight: 'bold', color: '#fff', marginBottom: 4 },
-  subtitle: { fontSize: 14, color: '#fff', opacity: 0.8, marginBottom: 24 },
-  welcome: { fontSize: 22, fontWeight: 'bold', color: '#fff', marginBottom: 4 },
-  loginTo: { fontSize: 14, color: '#fff', marginBottom: 16 },
-  input: { width: '100%', backgroundColor: '#fff', borderRadius: 8, padding: 12, marginBottom: 16, fontSize: 16 },
-  loginBtn: { width: '100%', borderRadius: 8, borderWidth: 2, borderColor: '#fff', padding: 12, alignItems: 'center', marginBottom: 16 },
-  loginBtnText: { color: '#fff', fontWeight: 'bold', fontSize: 18 },
-  checkboxRow: { flexDirection: 'row', alignItems: 'center', marginTop: 8 },
-  checkboxText: { color: '#fff', fontSize: 12, marginLeft: 8, flex: 1 },
+  container: {
+    flex: 1,
+    backgroundColor: themeColors.white,
+  },
+  backBtn: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+    zIndex: 1,
+    backgroundColor: themeColors.white,
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+  },
+  backBtnText: {
+    fontSize: 24,
+    color: themeColors.textDark,
+  },
+  centered: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: themeColors.textLight,
+    marginBottom: 30,
+  },
+  welcome: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: themeColors.textDark,
+    marginBottom: 8,
+  },
+  loginTo: {
+    fontSize: 16,
+    color: themeColors.textLight,
+    marginBottom: 30,
+  },
+  input: {
+    width: '100%',
+    height: 50,
+    backgroundColor: themeColors.white,
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
+    color: themeColors.textDark,
+    fontSize: 16,
+  },
+  loginBtn: {
+    backgroundColor: themeColors.yellowPrimary,
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 40,
+    alignItems: 'center',
+    marginBottom: 16,
+    elevation: 2,
+  },
+  loginBtnText: {
+    color: themeColors.textDark,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  registerText: {
+    color: themeColors.textDark,
+    marginBottom: 8,
+    textDecorationLine: 'underline',
+    fontSize: 16,
+  },
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
+    paddingHorizontal: 20,
+  },
+  checkboxText: {
+    color: themeColors.textLight,
+    marginLeft: 8,
+    flex: 1,
+    fontSize: 14,
+  },
 }); 

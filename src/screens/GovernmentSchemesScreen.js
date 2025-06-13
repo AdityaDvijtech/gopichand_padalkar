@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import AppImages from '../assets/images'; // Assuming this path is correct
+import AppImages from '../assets/images';
+import { Ionicons } from '@expo/vector-icons';
 
-// Define your theme colors (can be imported from a central theme file)
 const themeColors = {
   yellowPrimary: '#FFD700',
   yellowLight: '#FFFACD',
   white: '#FFFFFF',
   textDark: '#212121',
   textLight: '#585858',
-  // black: '#000000', // Already available if needed
+  black: '#000000',
 };
 
 const sections = [
@@ -38,10 +38,15 @@ const sections = [
 
 export default function GovernmentSchemesScreen() {
   return (
-    // Using themeColors.white for a solid white background with LinearGradient.
-    // You can remove LinearGradient if you just want a solid color set in styles.container.
-    <LinearGradient colors={[themeColors.white, themeColors.white]} style={styles.container}>
+    <LinearGradient colors={[themeColors.yellowLight, themeColors.white]} style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
+         <View style={styles.complaintHeader}>
+                   <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                     <Ionicons name="arrow-back" size={24} color={themeColors.textDark} />
+                   </TouchableOpacity>
+                   <Text style={styles.complaintTitle}>Government Schemes</Text>
+         </View>
+
         {sections.map((section, idx) => (
           <View key={idx} style={styles.section}>
             <Image source={section.image} style={styles.sectionImg} />
@@ -55,42 +60,62 @@ export default function GovernmentSchemesScreen() {
 }
 
 const styles = StyleSheet.create({
+complaintHeader: {
+    flexDirection: 'row',
+    marginBottom: 12,
+    marginTop: 8,
+  },
+  backButton: {
+      backgroundColor: themeColors.white,
+      borderRadius: 20,
+      width: 40,
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginRight: 16,
+      elevation: 2,
+      borderWidth: 1,
+      borderColor: themeColors.yellowLight,
+    },
+    complaintTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: themeColors.textDark,
+      },
   container: {
     flex: 1,
-    // backgroundColor: themeColors.white, // Can be set here if not using LinearGradient for solid color
+    backgroundColor: themeColors.white,
   },
   scrollContent: {
-    padding: 20, // Increased padding a bit
+    padding: 16,
   },
   section: {
-    backgroundColor: themeColors.white, // Ensure section background is white
-    borderRadius: 12, // Add rounded corners to the section cards
-    padding: 16,
-    marginBottom: 24,
-    elevation: 3, // Add a bit of shadow for depth
-    shadowColor: '#000', // Shadow for iOS
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    borderWidth: 1, // Optional: subtle border
-    borderColor: themeColors.yellowLight, // Optional: light yellow border
+    backgroundColor: themeColors.white,
+    borderRadius: 12,
+    marginBottom: 20,
+    overflow: 'hidden',
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: themeColors.yellowLight,
   },
   sectionImg: {
     width: '100%',
-    height: 180, // Increased height for better visual
-    borderRadius: 8,
-    marginBottom: 12, // Increased margin
-    backgroundColor: themeColors.yellowLight, // Placeholder background for the image area
+    height: 200,
+    resizeMode: 'cover',
   },
   sectionTitle: {
-    fontSize: 20, // Slightly larger title
+    fontSize: 22,
     fontWeight: 'bold',
     color: themeColors.textDark,
-    marginBottom: 8, // Increased margin
+    marginTop: 16,
+    marginBottom: 8,
+    paddingHorizontal: 16,
   },
   sectionDesc: {
-    color: themeColors.textLight, // Using lighter text for description
-    fontSize: 15, // Slightly larger description text
-    lineHeight: 22, // Improved line height for readability
+    fontSize: 16,
+    color: themeColors.textLight,
+    lineHeight: 24,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
   },
 });
