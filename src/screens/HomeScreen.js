@@ -209,11 +209,15 @@ const themeColors = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: themeColors.white, // Main background set to white
+    backgroundColor: themeColors.white,
+    marginTop: 20,
+    paddingTop: 0,
   },
   scrollContent: {
     padding: 16,
+    paddingTop: 0,
     alignItems: 'center',
+    marginHorizontal: 8,
   },
   banner: {
     height: 275,
@@ -525,7 +529,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 12,
-    marginTop: 8,
+    marginTop: 0,
   },
   bjpLogo: {
     width: 40,
@@ -538,5 +542,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: themeColors.textDark,
     letterSpacing: 1,
+  },
+  carouselBg: {
+    width: '100%',
+    paddingTop: 0,
+    marginTop: 0,
   },
 });

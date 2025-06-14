@@ -60,10 +60,21 @@ export default function GovernmentSchemesScreen() {
 }
 
 const styles = StyleSheet.create({
-complaintHeader: {
+  container: {
+    flex: 1,
+    backgroundColor: themeColors.white,
+    marginTop: 20,
+    paddingTop: 0,
+  },
+  scrollContent: {
+    padding: 16,
+    paddingTop: 0,
+    marginHorizontal: 8,
+  },
+  complaintHeader: {
     flexDirection: 'row',
     marginBottom: 12,
-    marginTop: 8,
+    marginTop: 0,
   },
   backButton: {
       backgroundColor: themeColors.white,
@@ -82,13 +93,6 @@ complaintHeader: {
         fontWeight: 'bold',
         color: themeColors.textDark,
       },
-  container: {
-    flex: 1,
-    backgroundColor: themeColors.white,
-  },
-  scrollContent: {
-    padding: 16,
-  },
   section: {
     backgroundColor: themeColors.white,
     borderRadius: 12,

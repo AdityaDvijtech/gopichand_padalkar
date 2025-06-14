@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: themeColors.white,
+    marginTop: 20,
+    paddingTop: 0,
   },
   backBtn: {
     position: 'absolute',
@@ -91,6 +93,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    paddingTop: 0,
+    marginHorizontal: 8,
   },
   logo: {
     width: 100,

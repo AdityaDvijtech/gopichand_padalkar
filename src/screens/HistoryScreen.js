@@ -125,9 +125,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: themeColors.white,
+    marginTop: 20,
+    paddingTop: 0,
   },
   headerGradient: {
-    paddingTop: 40,
+    paddingTop: 0,
     paddingBottom: 20,
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
@@ -173,6 +175,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+    marginHorizontal: 8,
   },
   timelineContainer: {
     padding: 16,

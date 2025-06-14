@@ -38,11 +38,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: themeColors.white,
+    marginTop: 0,
+    paddingTop: 0,
   },
   centered: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 0,
   },
   logo: {
     width: 120,

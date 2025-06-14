@@ -93,10 +93,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: themeColors.white,
+    marginTop: 20,
+    paddingTop: 0,
   },
   detailHeader: {
     height: 300,
     position: 'relative',
+    marginTop: 0,
   },
   detailImage: {
     width: '100%',
@@ -137,6 +140,7 @@ const styles = StyleSheet.create({
   },
   detailContent: {
     padding: 20,
+    marginHorizontal: 8,
   },
   detailSection: {
     marginBottom: 24,

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "dhangar-app",
+    "name": "gopichand-padalkar",
     "slug": "gopichand-padalkar",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -20,7 +20,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.adityap340.gopichandpadalkar"
     },
     "web": {
       "favicon": "./assets/favicon.png"

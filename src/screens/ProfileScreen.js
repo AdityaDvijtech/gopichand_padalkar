@@ -65,10 +65,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: themeColors.white,
+    marginTop: 20,
+    paddingTop: 0,
   },
   scrollContent: {
     padding: 16,
+    paddingTop: 0,
     alignItems: 'center',
+    marginHorizontal: 8,
   },
   backBtn: {
     position: 'absolute',
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
   centered: {
     alignItems: 'center',
     marginBottom: 24,
-    marginTop: 60,
+    marginTop: 0,
   },
   avatar: {
     width: 100,

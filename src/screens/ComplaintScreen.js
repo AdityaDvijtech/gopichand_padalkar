@@ -127,14 +127,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: themeColors.white,
+    marginTop: 20,
+    paddingTop: 0,
   },
   scrollContent: {
     padding: 16,
+    paddingTop: 0,
+    marginHorizontal: 8,
   },
   complaintHeader: {
     flexDirection: 'row',
     marginBottom: 12,
-    marginTop: 8,
+    marginTop: 0,
   },
   backButton: {
     backgroundColor: themeColors.white,
